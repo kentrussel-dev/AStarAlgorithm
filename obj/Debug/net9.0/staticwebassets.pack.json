@@ -21,6 +21,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\jorem.png",
+      "PackagePath": "staticwebassets\\img\\jorem.png"
+    },
+    {
+      "Id": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\kent.png",
+      "PackagePath": "staticwebassets\\img\\kent.png"
+    },
+    {
       "Id": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

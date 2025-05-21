@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RXO3/6NvWPMk53gANkCC3yt9laaKLcJo0NRuSoz2I8I=",
+  "Hash": "m8mgjS5tTeI0hGVoZrTEg32ErfHP6oiZudL2TEU//Kc=",
   "Source": "AStarAlgorithmDemo",
   "BasePath": "_content/AStarAlgorithmDemo",
   "Mode": "Default",
@@ -1527,6 +1527,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\jorem.png",
+      "SourceId": "AStarAlgorithmDemo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\",
+      "BasePath": "_content/AStarAlgorithmDemo",
+      "RelativePath": "img/jorem#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0nqrmuo16u",
+      "Integrity": "ZHJTAWCSm12Dk2Nj5dkdh/GmU9NH5/ZEOgqSzsdztg8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\jorem.png"
+    },
+    {
+      "Identity": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\kent.png",
+      "SourceId": "AStarAlgorithmDemo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\",
+      "BasePath": "_content/AStarAlgorithmDemo",
+      "RelativePath": "img/kent#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6itk9lesmh",
+      "Integrity": "ojBfREVHfLbuZkZsjYcyUcey30WrvVzPR0U3xXGV1E4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\kent.png"
     },
     {
       "Identity": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\js\\site.js",
@@ -4596,6 +4638,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-wfFuuYm+Lh6RbCeeiUqxw334b/hIOkp5j9eokGUM1Y0="
+        }
+      ]
+    },
+    {
+      "Route": "img/jorem.0nqrmuo16u.png",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\jorem.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2964"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZHJTAWCSm12Dk2Nj5dkdh/GmU9NH5/ZEOgqSzsdztg8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 21:12:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0nqrmuo16u"
+        },
+        {
+          "Name": "label",
+          "Value": "img/jorem.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZHJTAWCSm12Dk2Nj5dkdh/GmU9NH5/ZEOgqSzsdztg8="
+        }
+      ]
+    },
+    {
+      "Route": "img/jorem.png",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\jorem.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2964"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZHJTAWCSm12Dk2Nj5dkdh/GmU9NH5/ZEOgqSzsdztg8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 21:12:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZHJTAWCSm12Dk2Nj5dkdh/GmU9NH5/ZEOgqSzsdztg8="
+        }
+      ]
+    },
+    {
+      "Route": "img/kent.6itk9lesmh.png",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\kent.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16454"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ojBfREVHfLbuZkZsjYcyUcey30WrvVzPR0U3xXGV1E4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 21:11:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6itk9lesmh"
+        },
+        {
+          "Name": "label",
+          "Value": "img/kent.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ojBfREVHfLbuZkZsjYcyUcey30WrvVzPR0U3xXGV1E4="
+        }
+      ]
+    },
+    {
+      "Route": "img/kent.png",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\kent.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16454"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ojBfREVHfLbuZkZsjYcyUcey30WrvVzPR0U3xXGV1E4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 21:11:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ojBfREVHfLbuZkZsjYcyUcey30WrvVzPR0U3xXGV1E4="
         }
       ]
     },

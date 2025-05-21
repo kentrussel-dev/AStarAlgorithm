@@ -435,3 +435,4 @@ C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\compressed\4ikthm9vk4-3r
 C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\compressed\gkv9xuoymd-whaooiwf8x.gz
 C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\compressed\n2ax2y247u-yo38qa9qgw.gz
 C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\compressed\1xh4j48lec-ifch775wam.gz
+C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\AStarAlgorithmDemo.sourcelink.json

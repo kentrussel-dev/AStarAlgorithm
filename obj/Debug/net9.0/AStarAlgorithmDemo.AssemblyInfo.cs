@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AStarAlgorithmDemo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d88bcf69ede7cbc017da359f101a707b8662740")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2792e49c907d36599aeb98d7e295d85e343f7802")]
 [assembly: System.Reflection.AssemblyProductAttribute("AStarAlgorithmDemo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AStarAlgorithmDemo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

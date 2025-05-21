@@ -1,0 +1,129 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+    
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">A* Pathfinding Algorithm</h1>
+        <p class="lead">A comprehensive demonstration of one of the most efficient pathfinding algorithms</p>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-5">
+        <div class="card-body p-0">
+            <ul class="nav nav-tabs" id="algorithmTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="visualization-tab" data-bs-toggle="tab" data-bs-target="#visualization" 
+                            type="button" role="tab" aria-controls="visualization" aria-selected="true">
+                        <i class="fas fa-eye me-2"></i>Visualization
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="interactive-tab" data-bs-toggle="tab" data-bs-target="#interactive" 
+                            type="button" role="tab" aria-controls="interactive" aria-selected="false">
+                        <i class="fas fa-gamepad me-2"></i>Interactive Game
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="community-tab" data-bs-toggle="tab" data-bs-target="#community" 
+                            type="button" role="tab" aria-controls="community" aria-selected="false">
+                        <i class="fas fa-users me-2"></i>Community Examples
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="aboutus-tab" data-bs-toggle="tab" data-bs-target="#aboutus" 
+                            type="button" role="tab" aria-controls="aboutus" aria-selected="false">
+                        <i class="fas fa-id-card me-2"></i>About Us
+                    </button>
+                </li>
+            </ul>
+            
+            <div class="tab-content p-4" id="algorithmTabsContent">
+                <!-- Visualization Tab -->
+                <div class="tab-pane fade show active" id="visualization" role="tabpanel" aria-labelledby="visualization-tab">
+                    <partial name="_VisualizationPartial" />
+                </div>
+                
+                <!-- Interactive Game Tab -->
+                <div class="tab-pane fade" id="interactive" role="tabpanel" aria-labelledby="interactive-tab">
+                    <partial name="_InteractivePartial" />
+                </div>
+                
+                <!-- Community Examples Tab -->
+                <div class="tab-pane fade" id="community" role="tabpanel" aria-labelledby="community-tab">
+                    <partial name="_CommunityPartial" />
+                </div>
+                <!-- About Us Tab -->
+                <div class="tab-pane fade" id="aboutus" role="tabpanel" aria-labelledby="aboutus-tab">
+                    <partial name="_AboutUsPartial" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-tachometer-alt fa-3x text-primary mb-3"></i>
+                    <h3 class="card-title">Efficient</h3>
+                    <p class="card-text">A* combines the advantages of Dijkstra's algorithm and greedy best-first search to efficiently find the shortest path.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-code fa-3x text-primary mb-3"></i>
+                    <h3 class="card-title">Adaptable</h3>
+                    <p class="card-text">The A* algorithm can be customized with different heuristics to adapt to various use cases and environments.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-lightbulb fa-3x text-primary mb-3"></i>
+                    <h3 class="card-title">Practical</h3>
+                    <p class="card-text">Used in real-world applications from video games and robotics to GPS navigation systems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Each tab will load its specific JS only when activated -->
+    <script>
+        $(document).ready(function() {
+            // Load scripts only when tab is activated
+            $('#algorithmTabs button').on('shown.bs.tab', function (e) {
+                var targetTab = $(e.target).attr("data-bs-target");
+                
+                if (targetTab === '#visualization' && !window.visualizationScriptLoaded) {
+                    $.getScript('/js/visualization.js', function() {
+                        window.visualizationScriptLoaded = true;
+                    });
+                }
+                else if (targetTab === '#interactive' && !window.interactiveScriptLoaded) {
+                    $.getScript('/js/interactive.js', function() {
+                        window.interactiveScriptLoaded = true;
+                    });
+                }
+                else if (targetTab === '#community' && !window.communityScriptLoaded) {
+                    $.getScript('/js/community.js', function() {
+                        window.communityScriptLoaded = true;
+                    });
+                }
+            });
+            
+            // Load the visualization script on initial page load
+            if (!window.visualizationScriptLoaded) {
+                $.getScript('/js/visualization.js', function() {
+                    window.visualizationScriptLoaded = true;
+                });
+            }
+        });
+    </script>
+}

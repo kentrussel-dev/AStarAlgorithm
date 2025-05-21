@@ -1,0 +1,853 @@
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-project-diagram me-2"></i>A* Algorithm Visualization</h5>
+            </div>
+            <div class="card-body">
+                <div class="visualization-container position-relative">
+                    <canvas id="visualizationCanvas" class="w-100" height="500"></canvas>
+                    <!-- Alert container positioned absolutely within the visualization container -->
+                    <div id="visualizationAlert" class="alert-container d-none">
+                        <div class="alert alert-primary">
+                            <i class="fas fa-info-circle me-2"></i><span id="alertMessage">Processing...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-sliders-h me-2"></i>Controls</h5>
+            </div>
+            <div class="card-body control-panel">
+                <div class="control-group">
+                    <label class="control-label"><i class="fas fa-mouse-pointer me-2"></i>Interaction Mode:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="interactionMode" id="wallsMode" value="walls" checked>
+                        <label class="form-check-label" for="wallsMode">
+                            Place/Remove Walls
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="interactionMode" id="startMode" value="start">
+                        <label class="form-check-label" for="startMode">
+                            Place Start Node
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="interactionMode" id="endMode" value="end">
+                        <label class="form-check-label" for="endMode">
+                            Place End Node
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label for="gridSizeRange" class="control-label">Grid Size: <span id="gridSizeValue">20</span></label>
+                    <input type="range" class="form-range" min="5" max="50" value="20" id="gridSizeRange">
+                </div>
+                
+                <div class="control-group">
+                    <label for="algorithmSpeed" class="control-label">Animation Speed:</label>
+                    <select class="form-select" id="algorithmSpeed">
+                        <option value="50">Very Fast</option>
+                        <option value="100">Fast</option>
+                        <option value="200" selected>Normal</option>
+                        <option value="400">Slow</option>
+                        <option value="800">Very Slow</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="heuristicType" class="control-label">Heuristic Function:</label>
+                    <select class="form-select" id="heuristicType">
+                        <option value="manhattan" selected>Manhattan Distance</option>
+                        <option value="euclidean">Euclidean Distance</option>
+                        <option value="diagonal">Diagonal Distance</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <button id="startButton" class="btn btn-viz btn-viz-start w-100 mb-3">
+                        <i class="fas fa-play me-2"></i>Start
+                    </button>
+                    <button id="resetButton" class="btn btn-viz btn-viz-reset w-100 mb-3">
+                        <i class="fas fa-redo me-2"></i>Reset
+                    </button>
+                    <button id="clearWallsButton" class="btn btn-viz btn-viz-clear w-100">
+                        <i class="fas fa-eraser me-2"></i>Clear Walls
+                    </button>
+                    <button id="generateMazeButton" class="btn btn-viz btn-viz-maze w-100 mt-3">
+                        <i class="fas fa-maze me-2"></i>Generate Maze
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Instructions Panel -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0"><i class="fas fa-question-circle me-2"></i>Instructions</h5>
+    </div>
+    <div class="card-body bg-dark text-white">
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <li>Select an interaction mode from the radio buttons</li>
+                    <li><strong>Place/Remove Walls</strong>: Click and drag to create or remove wall obstacles</li>
+                    <li><strong>Place Start Node</strong>: Click anywhere on the grid to place the start node</li>
+                    <li><strong>Place End Node</strong>: Click anywhere on the grid to place the end node</li>
+                    <li>Adjust the grid size and animation speed with the controls</li>
+                    <li>Choose different heuristic functions to see how they affect the algorithm</li>
+                    <li>Click <strong>Generate Maze</strong> to create a random maze with a guaranteed path</li>
+                    <li>Click <strong>Start</strong> to run the algorithm and see the path</li>
+                    <li>Click <strong>Reset</strong> to clear the grid and restore default start/end positions</li>
+                    <li>Click <strong>Clear Walls</strong> to remove all wall obstacles but keep start/end nodes</li>
+                    <li>Try different settings and maze sizes to explore how A* adapts to various scenarios!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>How It Works</h5>
+    </div>
+    <div class="card-body bg-dark text-white">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>A* Algorithm Steps:</h5>
+                <ol>
+                    <li>Initialize open and closed lists</li>
+                    <li>Add the starting node to the open list</li>
+                    <li>While the open list is not empty:
+                        <ul>
+                            <li>Find the node with the lowest f(n) = g(n) + h(n)</li>
+                            <li>Move this node to the closed list</li>
+                            <li>Generate all valid successors of this node</li>
+                            <li>For each successor:
+                                <ul>
+                                    <li>If it is the goal, we've found the path</li>
+                                    <li>Otherwise, compute f, g, and h values</li>
+                                    <li>Add to open list if not already there</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-md-6">
+                <h5>Color Legend:</h5>
+                <div class="color-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--node-start);"></div>
+                        <span>Start Node</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--node-end);"></div>
+                        <span>End Node</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--node-wall);"></div>
+                        <span>Wall (Obstacle)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--node-closed);"></div>
+                        <span>Visited Node</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--node-open);"></div>
+                        <span>Open List Node</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--node-path);"></div>
+                        <span>Final Path</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Information Section -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Information</h5>
+    </div>
+    <div class="card-body bg-dark text-white">
+        <p>The A* (A-star) algorithm is a popular and powerful pathfinding and graph traversal algorithm. It is widely used in games, robotics, and navigation systems due to its efficiency and flexibility. A* finds the shortest path between two points by combining the advantages of Dijkstra's Algorithm and Greedy Best-First Search, using a heuristic to guide its search.</p>
+        <ul>
+            <li><strong>Optimality:</strong> A* is guaranteed to find the shortest path if the heuristic is admissible (never overestimates the cost).</li>
+            <li><strong>Flexibility:</strong> The choice of heuristic allows A* to adapt to different environments and movement rules.</li>
+            <li><strong>Applications:</strong> Used in video games, robotics, GPS navigation, and more.</li>
+            <li><strong>Real-World Use:</strong> A* powers route planning in Google Maps, Waze, Uber, iRobot Roomba, and games like Warcraft III.</li>
+            <li><strong>Variants:</strong> There are many A* variants, including Weighted A*, IDA* (Iterative Deepening A*), Theta*, and Jump Point Search, each optimized for different scenarios.</li>
+            <li><strong>Comparison:</strong> Unlike Dijkstra's algorithm (which explores all possible paths), A* uses a heuristic to focus the search, making it faster in most cases.</li>
+            <li><strong>Limitations:</strong> A* can be memory-intensive on large graphs, and its performance depends on the quality of the heuristic.</li>
+            <li><strong>Educational Value:</strong> A* is a foundational concept in computer science, AI, and robotics courses, illustrating the power of heuristics in search algorithms.</li>
+        </ul>
+        <h5 class="mt-4">Heuristic Functions Explained:</h5>
+        <ul>
+            <li><strong>Manhattan Distance</strong>:<br>
+                <span class="text-light">The sum of the absolute differences of the x and y coordinates. Used for grids where movement is only allowed in four directions (up, down, left, right).</span>
+            </li>
+            <li class="mt-2"><strong>Euclidean Distance</strong>:<br>
+                <span class="text-light">The straight-line (as-the-crow-flies) distance between two points. Used when diagonal movement is allowed and has the same cost as straight movement.</span>
+            </li>
+            <li class="mt-2"><strong>Diagonal Distance</strong>:<br>
+                <span class="text-light">The minimum number of moves required when diagonal movement is allowed, but moving diagonally may have a different cost than moving straight.</span>
+            </li>
+        </ul>
+        <h5 class="mt-4">Fun Facts & Notes:</h5>
+        <ul>
+            <li>A* is often used in robotics for real-time obstacle avoidance and route planning.</li>
+            <li>Game developers use A* to create intelligent NPC movement and enemy AI.</li>
+            <li>Open-source libraries for A* exist in nearly every programming language, making it easy to experiment and learn.</li>
+            <li>Choosing the right heuristic is key: a poor heuristic can make A* as slow as Dijkstra's, while a good one makes it extremely efficient.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- History Section -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0"><i class="fas fa-history me-2"></i>History</h5>
+    </div>
+    <div class="card-body bg-dark text-white">
+        <p>The A* algorithm was first introduced in 1968 by Peter Hart, Nils Nilsson, and Bertram Raphael in their paper "A Formal Basis for the Heuristic Determination of Minimum Cost Paths." It was developed at Stanford Research Institute as part of early work in artificial intelligence and robotics. Since then, A* has become a foundational algorithm in computer science and AI.</p>
+    </div>
+</div>
+
+<!-- Trivia Section -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Trivia</h5>
+    </div>
+    <div class="card-body bg-dark text-white">
+        <ul>
+            <li>The "A" in A* does not stand for anything; it was chosen to indicate the algorithm is "admissible" and optimal.</li>
+            <li>A* is used in Google Maps, Waze, and many popular video games for pathfinding.</li>
+            <li>Variants of A* include Weighted A*, Theta*, and IDA* (Iterative Deepening A*).</li>
+            <li>The efficiency of A* depends heavily on the quality of the heuristic function.</li>
+        </ul>
+    </div>
+</div>
+
+
+
+<link rel="stylesheet" href="~/css/visualization.css" />
+
+<style>
+/* Additional styles for the alert container */
+.visualization-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.alert-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    text-align: center;
+    pointer-events: none; /* Allow clicking through the alert */
+}
+
+.alert-container .alert {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px 25px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-left: 4px solid #0d6efd;
+}
+
+.alert-success {
+    border-left-color: #198754 !important;
+}
+
+.alert-danger {
+    border-left-color: #dc3545 !important;
+}
+</style>
+
+<!-- jQuery, Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // A* Pathfinding Visualization Implementation
+    const visualizationScript = function() {
+        // Canvas and grid configuration
+        const canvas = document.getElementById('visualizationCanvas');
+        const ctx = canvas.getContext('2d');
+        let gridSize = 20;
+        let cellSize;
+        let gridWidth, gridHeight;
+        
+        // Alert elements
+        const alertContainer = document.getElementById('visualizationAlert');
+        const alertMessage = document.getElementById('alertMessage');
+        
+        // Algorithm state
+        let grid = [];
+        let startNode = {x: 5, y: 10};
+        let endNode = {x: 15, y: 10};
+        let openSet = [];
+        let closedSet = [];
+        let path = [];
+        let isRunning = false;
+        let animationSpeed = 200;
+        let heuristicType = 'manhattan';
+        let isMouseDown = false;
+        let interactionMode = 'walls'; // Default mode: walls
+        
+        // Colors - updated to match CSS variables
+        const colors = {
+            empty: '#1e1e2d',
+            wall: '#121218',
+            start: '#00d1b2',
+            end: '#ff3860',
+            open: '#ffdd57',
+            closed: '#3298dc',
+            path: '#b86bff',
+            gridLine: 'rgba(255, 255, 255, 0.05)',
+            visited: '#48c774',
+            considered: '#ff7b4d'
+        };
+        
+        // Show alert message
+        function showAlert(message, type = 'primary', duration = 3000) {
+            alertMessage.textContent = message;
+            alertContainer.classList.remove('d-none');
+            alertContainer.querySelector('.alert').className = `alert alert-${type}`;
+            
+            if (duration > 0) {
+                setTimeout(() => {
+                    hideAlert();
+                }, duration);
+            }
+        }
+        
+        // Hide alert message
+        function hideAlert() {
+            alertContainer.classList.add('d-none');
+        }
+        
+        // Initialize the grid
+        function initGrid() {
+            // Calculate grid dimensions based on canvas size
+            const canvasWidth = canvas.parentElement.clientWidth;
+            const canvasHeight = 500; // Fixed height from your HTML
+            
+            cellSize = Math.min(Math.floor(canvasWidth / gridSize), Math.floor(canvasHeight / gridSize));
+            gridWidth = Math.floor(canvasWidth / cellSize);
+            gridHeight = Math.floor(canvasHeight / cellSize);
+            
+            // Resize canvas to fit grid exactly
+            canvas.width = gridWidth * cellSize;
+            canvas.height = gridHeight * cellSize;
+            
+            // Initialize grid cells
+            grid = [];
+            for (let y = 0; y < gridHeight; y++) {
+                grid[y] = [];
+                for (let x = 0; x < gridWidth; x++) {
+                    grid[y][x] = {
+                        x: x,
+                        y: y,
+                        isWall: false,
+                        g: 0,
+                        h: 0,
+                        f: 0,
+                        previous: null,
+                        visited: false,
+                        inPath: false
+                    };
+                }
+            }
+            
+            // Reset start and end positions if they're out of bounds
+            if (startNode.x >= gridWidth) startNode.x = gridWidth - 1;
+            if (startNode.y >= gridHeight) startNode.y = gridHeight - 1;
+            if (endNode.x >= gridWidth) endNode.x = gridWidth - 1;
+            if (endNode.y >= gridHeight) endNode.y = gridHeight - 1;
+            
+            drawGrid();
+        }
+        
+        // Draw the grid with smooth transitions
+        function drawGrid() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw cells
+            for (let y = 0; y < gridHeight; y++) {
+                for (let x = 0; x < gridWidth; x++) {
+                    const cell = grid[y][x];
+                    let color = colors.empty;
+                    
+                    if (cell.isWall) {
+                        color = colors.wall;
+                    } else if (x === startNode.x && y === startNode.y) {
+                        color = colors.start;
+                    } else if (x === endNode.x && y === endNode.y) {
+                        color = colors.end;
+                    } else if (cell.inPath) {
+                        color = colors.path;
+                    } else if (openSet.some(node => node.x === x && node.y === y)) {
+                        color = colors.open;
+                    } else if (cell.visited) {
+                        color = colors.closed;
+                    }
+                    
+                    // Draw cell with rounded corners for smoother look
+                    const padding = 1;
+                    const cornerRadius = 2;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(x * cellSize + cornerRadius, y * cellSize + padding);
+                    ctx.lineTo((x + 1) * cellSize - cornerRadius, y * cellSize + padding);
+                    ctx.quadraticCurveTo((x + 1) * cellSize - padding, y * cellSize + padding, (x + 1) * cellSize - padding, y * cellSize + cornerRadius);
+                    ctx.lineTo((x + 1) * cellSize - padding, (y + 1) * cellSize - cornerRadius);
+                    ctx.quadraticCurveTo((x + 1) * cellSize - padding, (y + 1) * cellSize - padding, (x + 1) * cellSize - cornerRadius, (y + 1) * cellSize - padding);
+                    ctx.lineTo(x * cellSize + cornerRadius, (y + 1) * cellSize - padding);
+                    ctx.quadraticCurveTo(x * cellSize + padding, (y + 1) * cellSize - padding, x * cellSize + padding, (y + 1) * cellSize - cornerRadius);
+                    ctx.lineTo(x * cellSize + padding, y * cellSize + cornerRadius);
+                    ctx.quadraticCurveTo(x * cellSize + padding, y * cellSize + padding, x * cellSize + cornerRadius, y * cellSize + padding);
+                    ctx.closePath();
+                    
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                    
+                    // Draw grid lines
+                    ctx.strokeStyle = colors.gridLine;
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        // Heuristic functions
+        function heuristic(a, b) {
+            switch (heuristicType) {
+                case 'euclidean':
+                    return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
+                case 'diagonal':
+                    const dx = Math.abs(a.x - b.x);
+                    const dy = Math.abs(a.y - b.y);
+                    return (dx + dy) + (Math.sqrt(2) - 2) * Math.min(dx, dy);
+                case 'manhattan':
+                default:
+                    return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+            }
+        }
+        
+        // A* Algorithm with smooth animations
+        function aStarStep() {
+            if (openSet.length > 0) {
+                // Find node with lowest f cost
+                let lowestIndex = 0;
+                for (let i = 0; i < openSet.length; i++) {
+                    if (openSet[i].f < openSet[lowestIndex].f) {
+                        lowestIndex = i;
+                    }
+                }
+                
+                const current = openSet[lowestIndex];
+                
+                // Check if we've reached the end
+                if (current.x === endNode.x && current.y === endNode.y) {
+                    // Reconstruct path
+                    path = [];
+                    let temp = current;
+                    path.push(temp);
+                    while (temp.previous) {
+                        path.push(temp.previous);
+                        temp = temp.previous;
+                    }
+                    
+                    // Mark path nodes for animation
+                    for (const node of path) {
+                        grid[node.y][node.x].inPath = true;
+                    }
+                    
+                    isRunning = false;
+                    showAlert(`Path found! Length: ${path.length - 1} steps`, 'success');
+                    animatePath();
+                    return;
+                }
+                
+                // Move current from open to closed set
+                openSet.splice(lowestIndex, 1);
+                current.visited = true;
+                closedSet.push(current);
+                
+                // Check neighbors
+                const neighbors = [];
+                for (let y = -1; y <= 1; y++) {
+                    for (let x = -1; x <= 1; x++) {
+                        // Skip current cell and diagonal movements for simplicity
+                        if (x === 0 && y === 0) continue;
+                        if (Math.abs(x) === 1 && Math.abs(y) === 1) continue;
+                        
+                        const nx = current.x + x;
+                        const ny = current.y + y;
+                        
+                        // Check bounds
+                        if (nx >= 0 && nx < gridWidth && ny >= 0 && ny < gridHeight) {
+                            neighbors.push(grid[ny][nx]);
+                        }
+                    }
+                }
+                
+                for (const neighbor of neighbors) {
+                    // Skip if neighbor is wall or in closed set
+                    if (neighbor.isWall || neighbor.visited) {
+                        continue;
+                    }
+                    
+                    // Calculate tentative g score
+                    const tentativeG = current.g + 1;
+                    
+                    // Check if this path to neighbor is better
+                    if (!openSet.includes(neighbor)) {
+                        openSet.push(neighbor);
+                    } else if (tentativeG >= neighbor.g) {
+                        continue;
+                    }
+                    
+                    // This is the best path so far
+                    neighbor.g = tentativeG;
+                    neighbor.h = heuristic(neighbor, endNode);
+                    neighbor.f = neighbor.g + neighbor.h;
+                    neighbor.previous = current;
+                }
+                
+                drawGrid();
+                
+                // Continue algorithm
+                if (isRunning) {
+                    setTimeout(aStarStep, animationSpeed);
+                }
+            } else {
+                // No solution
+                isRunning = false;
+                showAlert("No path found!", 'danger');
+            }
+        }
+        
+        // Animate the final path
+        function animatePath() {
+            let delay = 0;
+            for (let i = 0; i < path.length; i++) {
+                setTimeout(() => {
+                    grid[path[i].y][path[i].x].inPath = true;
+                    drawGrid();
+                }, delay);
+                delay += animationSpeed / 2;
+            }
+        }
+        
+        // Start the algorithm
+        function startAlgorithm() {
+            if (isRunning) return;
+            
+            // Reset algorithm state
+            openSet = [];
+            closedSet = [];
+            path = [];
+            
+            // Reset grid visualization states
+            for (let y = 0; y < gridHeight; y++) {
+                for (let x = 0; x < gridWidth; x++) {
+                    grid[y][x].g = 0;
+                    grid[y][x].h = 0;
+                    grid[y][x].f = 0;
+                    grid[y][x].previous = null;
+                    grid[y][x].visited = false;
+                    grid[y][x].inPath = false;
+                }
+            }
+            
+            // Add start node to open set
+            const startCell = grid[startNode.y][startNode.x];
+            startCell.g = 0;
+            startCell.h = heuristic(startNode, endNode);
+            startCell.f = startCell.g + startCell.h;
+            openSet.push(startCell);
+            
+            isRunning = true;
+            aStarStep();
+        }
+        
+        // Reset the grid
+        function resetGrid() {
+            isRunning = false;
+            openSet = [];
+            closedSet = [];
+            path = [];
+            
+            for (let y = 0; y < gridHeight; y++) {
+                for (let x = 0; x < gridWidth; x++) {
+                    grid[y][x].isWall = false;
+                    grid[y][x].g = 0;
+                    grid[y][x].h = 0;
+                    grid[y][x].f = 0;
+                    grid[y][x].previous = null;
+                    grid[y][x].visited = false;
+                    grid[y][x].inPath = false;
+                }
+            }
+            
+            // Reset start and end positions
+            startNode = {x: 5, y: 10};
+            endNode = {x: 15, y: 10};
+            
+            hideAlert();
+            drawGrid();
+        }
+        
+        // Clear walls only
+        function clearWalls() {
+            for (let y = 0; y < gridHeight; y++) {
+                for (let x = 0; x < gridWidth; x++) {
+                    grid[y][x].isWall = false;
+                }
+            }
+            
+            drawGrid();
+        }
+        
+        // Event handlers
+        function handleMouseDown(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = Math.floor((e.clientX - rect.left) / cellSize);
+            const y = Math.floor((e.clientY - rect.top) / cellSize);
+            
+            if (x >= 0 && x < gridWidth && y >= 0 && y < gridHeight) {
+                isMouseDown = true;
+                
+                switch(interactionMode) {
+                    case 'start':
+                        // Place start node (ensure not placing on walls or end node)
+                        if (!grid[y][x].isWall && !(x === endNode.x && y === endNode.y)) {
+                            startNode = {x, y};
+                        }
+                        break;
+                    case 'end':
+                        // Place end node (ensure not placing on walls or start node)
+                        if (!grid[y][x].isWall && !(x === startNode.x && y === startNode.y)) {
+                            endNode = {x, y};
+                        }
+                        break;
+                    case 'walls':
+                        // Toggle wall (ensure not placing on start or end nodes)
+                        if (!(x === startNode.x && y === startNode.y) && !(x === endNode.x && y === endNode.y)) {
+                            grid[y][x].isWall = !grid[y][x].isWall;
+                        }
+                        break;
+                }
+                
+                drawGrid();
+            }
+        }
+        
+        function handleMouseMove(e) {
+            if (!isMouseDown || interactionMode !== 'walls') return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const x = Math.floor((e.clientX - rect.left) / cellSize);
+            const y = Math.floor((e.clientY - rect.top) / cellSize);
+            
+            if (x >= 0 && x < gridWidth && y >= 0 && y < gridHeight) {
+                // Draw walls (make sure not to draw on start or end nodes)
+                if (!(x === startNode.x && y === startNode.y) && !(x === endNode.x && y === endNode.y)) {
+                    grid[y][x].isWall = true;
+                    drawGrid();
+                }
+            }
+        }
+        
+        function handleMouseUp() {
+            isMouseDown = false;
+        }
+        
+        function handleMouseLeave() {
+            handleMouseUp();
+        }
+        
+        // Initialize UI controls
+        function initControls() {
+            // Interaction mode radio buttons
+            document.querySelectorAll('input[name="interactionMode"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    interactionMode = this.value;
+                });
+            });
+            
+            // Grid size slider
+            document.getElementById('gridSizeRange').addEventListener('input', function() {
+                const newSize = parseInt(this.value);
+                document.getElementById('gridSizeValue').textContent = newSize;
+                gridSize = newSize;
+                resetGrid();
+                initGrid();
+            });
+            
+            // Animation speed dropdown
+            document.getElementById('algorithmSpeed').addEventListener('change', function() {
+                animationSpeed = parseInt(this.value);
+            });
+            
+            // Heuristic type dropdown
+            document.getElementById('heuristicType').addEventListener('change', function() {
+                heuristicType = this.value;
+            });
+            
+            // Start button
+            document.getElementById('startButton').addEventListener('click', function() {
+                startAlgorithm();
+            });
+            
+            // Reset button
+            document.getElementById('resetButton').addEventListener('click', function() {
+                resetGrid();
+            });
+            
+            // Clear walls button
+            document.getElementById('clearWallsButton').addEventListener('click', function() {
+                clearWalls();
+            });
+
+            document.getElementById('generateMazeButton').addEventListener('click', function() {
+                generateMaze();
+            });
+            
+            // Canvas event listeners
+            canvas.addEventListener('mousedown', handleMouseDown);
+            canvas.addEventListener('mousemove', handleMouseMove);
+            canvas.addEventListener('mouseup', handleMouseUp);
+            canvas.addEventListener('mouseleave', handleMouseLeave);
+
+        }
+        
+        // Initialize everything
+        function init() {
+            initGrid();
+            initControls();
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                initGrid();
+            });
+        }
+        // Maze generation using randomized DFS
+        function generateMaze() {
+            // Reset grid first
+            resetGrid();
+            
+            // Initialize all cells as walls
+            for (let y = 0; y < gridHeight; y++) {
+                for (let x = 0; x < gridWidth; x++) {
+                    grid[y][x].isWall = true;
+                }
+            }
+            
+            // Create a stack for DFS
+            const stack = [];
+            
+            // Choose random starting point (ensuring it's not on the edges)
+            const startX = Math.floor(Math.random() * (gridWidth - 4)) + 2;
+            const startY = Math.floor(Math.random() * (gridHeight - 4)) + 2;
+            
+            // Carve out the initial cell
+            grid[startY][startX].isWall = false;
+            stack.push({x: startX, y: startY});
+            
+            // Directions: up, right, down, left
+            const directions = [
+                {x: 0, y: -1},  // up
+                {x: 1, y: 0},   // right
+                {x: 0, y: 1},   // down
+                {x: -1, y: 0}   // left
+            ];
+            
+            while (stack.length > 0) {
+                const current = stack[stack.length - 1];
+                const {x, y} = current;
+                
+                // Find all unvisited neighbors (two cells away)
+                const neighbors = [];
+                for (const dir of directions) {
+                    const nx = x + dir.x * 2;
+                    const ny = y + dir.y * 2;
+                    
+                    if (nx > 0 && nx < gridWidth - 1 && ny > 0 && ny < gridHeight - 1 && grid[ny][nx].isWall) {
+                        neighbors.push({x: nx, y: ny, dir: dir});
+                    }
+                }
+                
+                if (neighbors.length > 0) {
+                    // Choose a random unvisited neighbor
+                    const next = neighbors[Math.floor(Math.random() * neighbors.length)];
+                    
+                    // Carve path to it (current cell + next cell)
+                    grid[y + next.dir.y][x + next.dir.x].isWall = false;
+                    grid[next.y][next.x].isWall = false;
+                    
+                    // Mark as visited and push to stack
+                    stack.push(next);
+                } else {
+                    // Backtrack
+                    stack.pop();
+                }
+            }
+            
+            // Set start and end points at opposite sides
+            startNode = {x: 1, y: 1};
+            endNode = {x: gridWidth - 2, y: gridHeight - 2};
+            
+            // Ensure start and end are not walls
+            grid[startNode.y][startNode.x].isWall = false;
+            grid[endNode.y][endNode.x].isWall = false;
+            
+            // Clear any potential walls around start and end
+            for (let y = startNode.y - 1; y <= startNode.y + 1; y++) {
+                for (let x = startNode.x - 1; x <= startNode.x + 1; x++) {
+                    if (x >= 0 && x < gridWidth && y >= 0 && y < gridHeight) {
+                        grid[y][x].isWall = false;
+                    }
+                }
+            }
+            
+            for (let y = endNode.y - 1; y <= endNode.y + 1; y++) {
+                for (let x = endNode.x - 1; x <= endNode.x + 1; x++) {
+                    if (x >= 0 && x < gridWidth && y >= 0 && y < gridHeight) {
+                        grid[y][x].isWall = false;
+                    }
+                }
+            }
+            
+            drawGrid();
+            showAlert("Maze generated with guaranteed path!", "success");
+        }
+        
+        // Start the visualization
+        init();
+    };
+    
+    // Run the visualization script
+    visualizationScript();
+});
+</script>

@@ -1,0 +1,954 @@
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-gamepad me-2"></i>A* Pathfinding Game</h5>
+            </div>
+            <div class="card-body position-relative">
+                <canvas id="gameCanvas" class="w-100" height="500"></canvas>
+                <div id="gameControls" class="position-absolute bottom-0 end-0 m-3" style="display:none"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-cog me-2"></i>Game Settings</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="gameDifficulty" class="form-label">Difficulty Level:</label>
+                    <select class="form-select" id="gameDifficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="gameMode" class="form-label">Game Mode:</label>
+                    <select class="form-select" id="gameMode">
+                        <option value="collect" selected>Collect Coins</option>
+                        <option value="escape">Escape the Maze</option>
+                        <option value="chase">Enemy Chase</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="showPathSwitch" checked>
+                        <label class="form-check-label" for="showPathSwitch">Show A* Path</label>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="btn-group w-100">
+                        <button id="startGameButton" class="btn btn-success">
+                            <i class="fas fa-play me-2"></i>Start Game
+                        </button>
+                        <button id="pauseGameButton" class="btn btn-warning">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button id="stopGameButton" class="btn btn-danger">
+                            <i class="fas fa-stop"></i>
+                        </button>
+                        <button id="helpGameButton" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#gameInstructionsModal">
+                            <i class="fas fa-question"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card mt-4 border-0 bg-dark">
+                    <div class="card-body">
+                        <h5><i class="fas fa-trophy me-2"></i>Game Stats</h5>
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <p class="mb-1">Score:</p>
+                                <h3 id="gameScore">0</h3>
+                            </div>
+                            <div class="col-6">
+                                <p class="mb-1">Time:</p>
+                                <h3 id="gameTime">30</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Game Instructions</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>How to Play:</h5>
+                <ul>
+                    <li>Choose your <strong>Difficulty</strong> and <strong>Game Mode</strong> in the settings panel.</li>
+                    <li>Press <strong>Start Game</strong> to begin. Use <strong>Pause</strong>, <strong>Stop</strong>, or <strong>Help</strong> for control and guidance at any time.</li>
+                    <li>Move your character using <strong>arrow keys</strong> or <strong>WASD</strong>.</li>
+                    <li>In <strong>Collect Coins</strong> mode, gather all coins as quickly as possible.</li>
+                    <li>In <strong>Escape the Maze</strong> mode, collect all coins, then reach the exit before time runs out.</li>
+                    <li>In <strong>Enemy Chase</strong> mode, avoid enemies that use A* to chase you and reach the exit.</li>
+                    <li>The <strong>Show A* Path</strong> toggle lets you visualize the shortest path to your goal.</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5>Game Features & Mechanics:</h5>
+                <ul>
+                    <li><strong>Dynamic Maze:</strong> Each game uses a new, always-solvable maze generated by DFS.</li>
+                    <li><strong>Reachable Placement:</strong> All coins and enemies are always reachable from the player at the start.</li>
+                    <li><strong>Difficulty Settings:</strong> Easy, Medium, and Hard affect time, coin/enemy count, and enemy speed.</li>
+                    <li><strong>Enemy AI:</strong> In Enemy Chase mode, enemies use A* to pursue you and never overlap or spawn in unreachable spots.</li>
+                    <li><strong>Exit Logic:</strong> In Escape mode, the exit appears only after all coins are collected. In Enemy Chase, the exit is present from the start.</li>
+                    <li><strong>Persistent Grid:</strong> The grid is always visible, even before starting the game.</li>
+                    <li><strong>Robust Controls:</strong> All controls are grouped in the settings panel for easy access.</li>
+                </ul>
+                <p class="mt-2"><strong>Tip:</strong> Use Pause to plan your moves, and Help for detailed instructions based on your current settings!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Learning With Play</h5>
+    </div>
+    <div class="card-body">
+        <p>This interactive game demonstrates how the A* algorithm works in a practical context:</p>
+        <ul>
+            <li>Watch how the path changes dynamically as you move or as coins are collected</li>
+            <li>See how the algorithm efficiently finds the shortest path around obstacles</li>
+            <li>Experience how different heuristics affect pathfinding in real-time</li>
+            <li>In "Enemy Chase" mode, observe how multiple agents can use A* simultaneously</li>
+        </ul>
+        <p>By playing the game, you'll gain intuition about how pathfinding algorithms work in video games, robotics, and GPS navigation systems.</p>
+    </div>
+</div>
+
+<!-- Game Instructions Modal -->
+<div class="modal fade" id="gameInstructionsModal" tabindex="-1" aria-labelledby="gameInstructionsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="gameInstructionsModalLabel"><i class="fas fa-info-circle me-2"></i>Game Instructions</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="gameInstructionsModalBody">
+        <!-- Dynamic instructions will be injected here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Game Over Modal -->
+<div class="modal fade" id="gameOverModal" tabindex="-1" aria-labelledby="gameOverModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background:#23243a;color:#fff;">
+      <div class="modal-header" style="background:#23243a;color:#fff;">
+        <h5 class="modal-title" id="gameOverModalLabel"><i class="fas fa-flag-checkered me-2"></i>Game Over</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center" id="gameOverModalBody" style="font-size:1.3rem;"></div>
+      <div class="modal-footer" style="background:#23243a;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+
+// A* Pathfinding Game Implementation
+(function() {
+    // Canvas and grid configuration
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    let gridSize = 20; // Set grid size to 20x20
+    let cellSize;
+    let gridWidth, gridHeight;
+    let animationFrame;
+
+    // Game state
+    let grid = [];
+    let player = { x: 1, y: 1 };
+    let coins = [];
+    let enemies = [];
+    let exit = { x: 13, y: 13 };
+    let path = [];
+    let showPath = true;
+    let gameMode = 'collect';
+    let difficulty = 'medium';
+    let score = 0;
+    let timeLeft = 30; // Changed from time to timeLeft for countdown
+    let timerInterval;
+    let gameRunning = false;
+    let gamePaused = false;
+    let gameOver = false;
+    let gameFinished = false;
+
+    // Colors (match game.css)
+    const colors = {
+        empty: getVar('--game-node-empty', '#1e1e2d'),
+        wall: getVar('--game-node-wall', '#121218'),
+        player: getVar('--game-node-player', '#00d1b2'),
+        coin: getVar('--game-node-coin', '#ffdd57'),
+        enemy: getVar('--game-node-enemy', '#ff3860'),
+        path: getVar('--game-node-path', '#b86bff'),
+        gridLine: getVar('--game-node-grid-line', 'rgba(255,255,255,0.05)'),
+        visited: getVar('--game-node-visited', '#48c774'),
+        considered: getVar('--game-node-considered', '#ff7b4d'),
+        exit: getVar('--game-node-exit', '#3298dc')
+    };
+    function getVar(name, fallback) {
+        return getComputedStyle(document.documentElement).getPropertyValue(name) || fallback;
+    }
+
+    // Grid cell types
+    const CELL_EMPTY = 0, CELL_WALL = 1, CELL_COIN = 2, CELL_EXIT = 3;
+
+    // Initialize the grid
+    function initGrid() {
+        // Responsive sizing
+        const canvasWidth = canvas.parentElement.clientWidth;
+        const canvasHeight = 500;
+        cellSize = Math.min(Math.floor(canvasWidth / gridSize), Math.floor(canvasHeight / gridSize));
+        gridWidth = gridSize;
+        gridHeight = gridSize;
+        canvas.width = gridWidth * cellSize;
+        canvas.height = gridHeight * cellSize;
+        
+        // Build grid
+        grid = [];
+        for (let y = 0; y < gridHeight; y++) {
+            let row = [];
+            for (let x = 0; x < gridWidth; x++) {
+                let type = CELL_EMPTY;
+                // Border walls
+                if (x === 0 || y === 0 || x === gridWidth-1 || y === gridHeight-1) type = CELL_WALL;
+                row.push({ x, y, type });
+            }
+            grid.push(row);
+        }
+        
+        // Use DFS maze generator for all modes
+        function generateMaze() {
+            for (let y = 0; y < gridHeight; y++) {
+                for (let x = 0; x < gridWidth; x++) {
+                    grid[y][x].type = CELL_WALL;
+                }
+            }
+            let stack = [{x: player.x, y: player.y}];
+            let visited = Array.from({length: gridHeight}, () => Array(gridWidth).fill(false));
+            visited[player.y][player.x] = true;
+            grid[player.y][player.x].type = CELL_EMPTY;
+            let directions = [[0,1],[1,0],[0,-1],[-1,0]];
+            while (stack.length > 0) {
+                let current = stack[stack.length-1];
+                // For collect mode, just carve a long path
+                let isExit = (gameMode === 'collect') ? (stack.length > gridWidth*gridHeight/2) : (current.x === exit.x && current.y === exit.y);
+                if (isExit) break;
+                let neighbors = [];
+                for (let [dx,dy] of directions) {
+                    let nx = current.x+dx, ny = current.y+dy;
+                    if (nx > 0 && ny > 0 && nx < gridWidth-1 && ny < gridHeight-1 && !visited[ny][nx]) {
+                        neighbors.push({x: nx, y: ny});
+                    }
+                }
+                if (neighbors.length > 0) {
+                    let next = neighbors[Math.floor(Math.random()*neighbors.length)];
+                    grid[next.y][next.x].type = CELL_EMPTY;
+                    visited[next.y][next.x] = true;
+                    stack.push(next);
+                } else {
+                    stack.pop();
+                }
+            }
+            // Carve some extra random paths
+            for (let i = 0; i < gridWidth*gridHeight/6; i++) {
+                let x = rand(1, gridWidth-2), y = rand(1, gridHeight-2);
+                grid[y][x].type = CELL_EMPTY;
+            }
+            // Place exit for escape/chase
+            if (gameMode === 'escape' || gameMode === 'chase') {
+                grid[exit.y][exit.x].type = CELL_EXIT;
+            }
+        }
+        // Set player spawn for chase mode to top-left, exit to bottom-right
+        if (gameMode === 'chase') {
+            player.x = 1; player.y = 1;
+            exit.x = gridWidth-2; exit.y = gridHeight-2;
+        }
+        generateMaze();
+        // Place coins
+        coins = [];
+        let coinCount = 8;
+        if (gameMode === 'collect' || gameMode === 'escape') {
+            if (difficulty === 'easy') coinCount = 8;
+            else if (difficulty === 'medium') coinCount = 10;
+            else coinCount = 12;
+            let attempts = 0;
+            let maxAttempts = 5000;
+            while (coins.length < coinCount && attempts < maxAttempts) {
+                let cx = rand(1, gridWidth-2), cy = rand(1, gridHeight-2);
+                if (grid[cy][cx].type !== CELL_EMPTY || (cx === player.x && cy === player.y)) {
+                    attempts++;
+                    continue;
+                }
+                // Check reachability from player
+                let testCoin = { x: cx, y: cy };
+                let pathToCoin = findPath(player, testCoin);
+                if (!pathToCoin || pathToCoin.length === 0) {
+                    attempts++;
+                    continue;
+                }
+                grid[cy][cx].type = CELL_COIN;
+                coins.push({ x: cx, y: cy });
+                attempts = 0; // reset attempts for next coin
+            }
+        }
+        // Place exit
+        if (gameMode === 'escape' || gameMode === 'chase') {
+            // In escape mode, only open exit if all coins are collected
+            if (gameMode === 'escape' && coins.length > 0) {
+                grid[exit.y][exit.x].type = CELL_EMPTY;
+            } else {
+                grid[exit.y][exit.x].type = CELL_EXIT;
+            }
+        }
+        // Place enemies
+        enemies = [];
+        if (gameMode === 'chase') {
+            let enemyCount = 2;
+            if (difficulty === 'medium') enemyCount = 3;
+            else if (difficulty === 'hard') enemyCount = 5;
+            let minDist = 8;
+            let placed = 0;
+            let enemyPositions = [];
+            let maxAttempts = 500;
+            let attempts = 0;
+            while (placed < enemyCount && attempts < maxAttempts) {
+                let ex, ey, valid;
+                let innerAttempts = 0;
+                do {
+                    ex = rand(1, gridWidth-2); ey = rand(1, gridHeight-2);
+                    valid = grid[ey][ex].type === CELL_EMPTY && (Math.abs(ex-player.x)+Math.abs(ey-player.y) >= minDist);
+                    // Ensure not overlapping with other enemies
+                    for (let pos of enemyPositions) {
+                        if (Math.abs(ex-pos.x)+Math.abs(ey-pos.y) < minDist) valid = false;
+                        if (ex === pos.x && ey === pos.y) valid = false;
+                    }
+                    // Ensure reachable from player
+                    if (valid) {
+                        let testEnemy = { x: ex, y: ey };
+                        let pathToEnemy = findPath(player, testEnemy);
+                        if (!pathToEnemy || pathToEnemy.length === 0) valid = false;
+                    }
+                    innerAttempts++;
+                    if (innerAttempts > 100) break; // fallback if too many attempts
+                } while (!valid);
+                if (valid) {
+                    enemies.push({ x: ex, y: ey, path: [] });
+                    enemyPositions.push({ x: ex, y: ey });
+                    placed++;
+                }
+                attempts++;
+            }
+        }
+        // Set timeLeft based on difficulty (same for collect and chase)
+        if (difficulty === 'easy') timeLeft = 30;
+        else if (difficulty === 'medium') timeLeft = 20;
+        else timeLeft = 10;
+    }
+
+    // Draw the grid and game state
+    function drawGrid() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw cells
+        for (let y = 0; y < gridHeight; y++) {
+            for (let x = 0; x < gridWidth; x++) {
+                let cell = grid[y][x];
+                let color = colors.empty;
+                if (cell.type === CELL_WALL) color = colors.wall;
+                if (cell.type === CELL_COIN) color = colors.coin;
+                if (cell.type === CELL_EXIT) color = colors.exit;
+                ctx.fillStyle = color;
+                ctx.fillRect(x*cellSize, y*cellSize, cellSize, cellSize);
+            }
+        }
+        
+        // Draw path
+        if (showPath && path && path.length > 0) {
+            for (let i = 0; i < path.length; i++) {
+                let node = path[i];
+                ctx.fillStyle = colors.path;
+                ctx.globalAlpha = 0.7;
+                ctx.fillRect(node.x*cellSize, node.y*cellSize, cellSize, cellSize);
+                ctx.globalAlpha = 1.0;
+            }
+        }
+        // Draw coin paths in escape mode
+        if (showPath && gameMode === 'escape' && coins.length > 0) {
+            for (let coin of coins) {
+                let coinPath = findPath(player, coin);
+                if (coinPath && coinPath.length > 1) {
+                    ctx.save();
+                    ctx.strokeStyle = colors.coin;
+                    ctx.globalAlpha = 0.4;
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    for (let i = 0; i < coinPath.length; i++) {
+                        let node = coinPath[i];
+                        let px = node.x * cellSize + cellSize / 2;
+                        let py = node.y * cellSize + cellSize / 2;
+                        if (i === 0) ctx.moveTo(px, py);
+                        else ctx.lineTo(px, py);
+                    }
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+        }
+        
+        // Draw coins
+        for (let coin of coins) {
+            ctx.beginPath();
+            ctx.arc(coin.x*cellSize+cellSize/2, coin.y*cellSize+cellSize/2, cellSize/4, 0, 2*Math.PI);
+            ctx.fillStyle = colors.coin;
+            ctx.shadowColor = colors.coin;
+            ctx.shadowBlur = 10;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+        
+        // Draw exit
+        if (gameMode === 'escape') {
+            ctx.beginPath();
+            ctx.arc(exit.x*cellSize+cellSize/2, exit.y*cellSize+cellSize/2, cellSize/3, 0, 2*Math.PI);
+            ctx.fillStyle = colors.exit;
+            ctx.fill();
+        }
+        
+        // Draw enemies
+        for (let enemy of enemies) {
+            ctx.beginPath();
+            ctx.arc(enemy.x*cellSize+cellSize/2, enemy.y*cellSize+cellSize/2, cellSize/3, 0, 2*Math.PI);
+            ctx.fillStyle = colors.enemy;
+            ctx.shadowColor = colors.enemy;
+            ctx.shadowBlur = 10;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+        
+        // Draw player
+        ctx.beginPath();
+        ctx.arc(player.x*cellSize+cellSize/2, player.y*cellSize+cellSize/2, cellSize/2.5, 0, 2*Math.PI);
+        ctx.fillStyle = colors.player;
+        ctx.shadowColor = colors.player;
+        ctx.shadowBlur = 12;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        
+        // Draw grid lines
+        ctx.strokeStyle = colors.gridLine;
+        ctx.lineWidth = 1;
+        for (let x = 0; x <= gridWidth; x++) {
+            ctx.beginPath();
+            ctx.moveTo(x*cellSize, 0);
+            ctx.lineTo(x*cellSize, gridHeight*cellSize);
+            ctx.stroke();
+        }
+        for (let y = 0; y <= gridHeight; y++) {
+            ctx.beginPath();
+            ctx.moveTo(0, y*cellSize);
+            ctx.lineTo(gridWidth*cellSize, y*cellSize);
+            ctx.stroke();
+        }
+        
+        // Draw enemy path visualization
+        if (gameMode === 'chase') {
+            for (let enemy of enemies) {
+                // Always show full path from enemy to player
+                let fullPath = findPath(enemy, player);
+                if (fullPath && fullPath.length > 1) {
+                    ctx.save();
+                    ctx.strokeStyle = colors.enemy;
+                    ctx.globalAlpha = 0.5;
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    for (let i = 0; i < fullPath.length; i++) {
+                        let node = fullPath[i];
+                        let px = node.x * cellSize + cellSize / 2;
+                        let py = node.y * cellSize + cellSize / 2;
+                        if (i === 0) ctx.moveTo(px, py);
+                        else ctx.lineTo(px, py);
+                    }
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+        }
+    }
+
+    // Utility functions
+    function rand(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    function cellIsWalkable(x, y) {
+        if (x < 0 || y < 0 || x >= gridWidth || y >= gridHeight) return false;
+        return grid[y][x].type !== CELL_WALL;
+    }
+
+    // A* Pathfinding
+    function findPath(start, goal) {
+        let openSet = [];
+        let closedSet = [];
+        let cameFrom = {};
+        let gScore = {};
+        let fScore = {};
+        
+        function key(n) { return n.x+','+n.y; }
+        
+        openSet.push(start);
+        gScore[key(start)] = 0;
+        fScore[key(start)] = heuristic(start, goal);
+        
+        while (openSet.length > 0) {
+            openSet.sort((a,b)=>fScore[key(a)]-fScore[key(b)]);
+            let current = openSet.shift();
+            
+            if (current.x === goal.x && current.y === goal.y) {
+                let p = [current];
+                while (cameFrom[key(current)]) {
+                    current = cameFrom[key(current)];
+                    p.push(current);
+                }
+                return p.reverse();
+            }
+            
+            closedSet.push(key(current));
+            
+            for (let dir of [[0,1],[1,0],[0,-1],[-1,0]]) {
+                let nx = current.x+dir[0], ny = current.y+dir[1];
+                if (!cellIsWalkable(nx, ny)) continue;
+                
+                let neighbor = {x: nx, y: ny};
+                if (closedSet.includes(key(neighbor))) continue;
+                
+                let tentative_g = gScore[key(current)] + 1;
+                
+                if (!openSet.some(n=>n.x===nx&&n.y===ny)) openSet.push(neighbor);
+                else if (tentative_g >= (gScore[key(neighbor)]||Infinity)) continue;
+                
+                cameFrom[key(neighbor)] = current;
+                gScore[key(neighbor)] = tentative_g;
+                fScore[key(neighbor)] = tentative_g + heuristic(neighbor, goal);
+            }
+        }
+        return [];
+    }
+    
+    function heuristic(a, b) {
+        return Math.abs(a.x-b.x) + Math.abs(a.y-b.y);
+    }
+
+    // Game loop
+    let enemyMoveTimer = 0;
+    let ENEMY_MOVE_INTERVAL = 500; // Default for hard
+    function gameLoop(timestamp) {
+        if (!gameRunning || gamePaused) return;
+        
+        // Player path to nearest coin/exit
+        let target = null;
+        if (gameMode === 'collect' && coins.length > 0) {
+            target = coins.reduce((min, c) => heuristic(player, c) < heuristic(player, min) ? c : min, coins[0]);
+        } else if (gameMode === 'escape') {
+            target = exit;
+        }
+        path = target ? findPath(player, target) : [];
+        
+        // Move enemies every ENEMY_MOVE_INTERVAL ms
+        if (gameMode === 'chase') {
+            if (!enemyMoveTimer) enemyMoveTimer = timestamp;
+            if (timestamp - enemyMoveTimer >= ENEMY_MOVE_INTERVAL) {
+                // Compute next positions for all enemies
+                let nextPositions = [];
+                for (let enemy of enemies) {
+                    let enemyPath = findPath(enemy, player);
+                    if (enemyPath.length > 1) {
+                        enemy.visualPath = enemyPath.slice(0, 6); // up to 5 steps
+                        nextPositions.push({ x: enemyPath[1].x, y: enemyPath[1].y });
+                    } else {
+                        enemy.visualPath = [];
+                        nextPositions.push({ x: enemy.x, y: enemy.y });
+                    }
+                }
+                // Prevent two enemies from moving to the same cell
+                let occupied = new Set(enemies.map(e => e.x+','+e.y));
+                for (let i = 0; i < enemies.length; i++) {
+                    let pos = nextPositions[i];
+                    let key = pos.x+','+pos.y;
+                    // If another enemy is already moving there, stay in place
+                    if ([...nextPositions.slice(0,i),...nextPositions.slice(i+1)].some(p => p.x === pos.x && p.y === pos.y)) {
+                        // Stay in place
+                        continue;
+                    }
+                    // If cell is not occupied by another enemy
+                    if (!occupied.has(key)) {
+                        occupied.delete(enemies[i].x+','+enemies[i].y);
+                        enemies[i].x = pos.x;
+                        enemies[i].y = pos.y;
+                        occupied.add(key);
+                    }
+                }
+                enemyMoveTimer = timestamp;
+            }
+        }
+        
+        // Check collisions
+        for (let enemy of enemies) {
+            if (enemy.x === player.x && enemy.y === player.y) {
+                endGame(false, 'Caught by an enemy!');
+                return;
+            }
+        }
+        
+        // Draw
+        drawGrid();
+        animationFrame = requestAnimationFrame(gameLoop);
+    }
+
+    // Handle player movement
+    function movePlayer(dx, dy) {
+        if (!gameRunning || gamePaused) return;
+        let nx = player.x + dx, ny = player.y + dy;
+        if (!cellIsWalkable(nx, ny)) return;
+        player.x = nx; 
+        player.y = ny;
+        // Collect coin
+        for (let i = 0; i < coins.length; i++) {
+            if (coins[i].x === player.x && coins[i].y === player.y) {
+                coins.splice(i, 1);
+                score++;
+                updateStats();
+                // In escape mode, open exit if all coins collected
+                if (gameMode === 'escape' && coins.length === 0) {
+                    grid[exit.y][exit.x].type = CELL_EXIT;
+                }
+                break;
+            }
+        }
+        // Escape
+        if ((gameMode === 'escape' || gameMode === 'chase') && player.x === exit.x && player.y === exit.y && (gameMode !== 'escape' || coins.length === 0)) {
+            endGame(true, 'You escaped the maze!');
+            return;
+        }
+        // Win collect mode
+        if (gameMode === 'collect' && coins.length === 0) {
+            endGame(true, 'All coins collected!');
+            return;
+        }
+    }
+
+    // Game control functions
+    function startGame() {
+        // Reset game state
+        player = { x: 1, y: 1 };
+        exit = { x: gridSize-2, y: gridSize-2 };
+        score = 0;
+        timeLeft = 30; // Reset to 30 seconds
+        gameOver = false;
+        gameFinished = false;
+        gameRunning = true;
+        gamePaused = false;
+        
+        // Update UI
+        document.getElementById('pauseGameButton').innerHTML = '<i class="fas fa-pause"></i>';
+        updateStats();
+        
+        // Initialize game elements
+        initGrid();
+        drawGrid();
+        
+        // Clear any existing timers
+        if (timerInterval) clearInterval(timerInterval);
+        
+        // Start countdown timer
+        timerInterval = setInterval(() => {
+            if (!gameRunning || gamePaused) return;
+            
+            timeLeft--;
+            updateStats();
+            
+            if (timeLeft <= 0) {
+                endGame(false, 'Time is up!');
+            }
+        }, 1000);
+        
+        // Set ENEMY_MOVE_INTERVAL based on difficulty
+        if (gameMode === 'chase') {
+            if (difficulty === 'easy') ENEMY_MOVE_INTERVAL = 1500;
+            else if (difficulty === 'medium') ENEMY_MOVE_INTERVAL = 1000;
+            else ENEMY_MOVE_INTERVAL = 300;
+        }
+        // Start game loop
+        enemyMoveTimer = 0;
+        cancelAnimationFrame(animationFrame);
+        animationFrame = requestAnimationFrame(gameLoop);
+    }
+    
+    function showCustomAlert(message) {
+        let existing = document.getElementById('customGameAlert');
+        if (existing) existing.remove();
+        const alertDiv = document.createElement('div');
+        alertDiv.id = 'customGameAlert';
+        alertDiv.style.position = 'absolute';
+        alertDiv.style.top = '50%';
+        alertDiv.style.left = '50%';
+        alertDiv.style.transform = 'translate(-50%, -50%)';
+        alertDiv.style.zIndex = '100';
+        alertDiv.style.background = 'rgba(30,32,45,0.98)';
+        alertDiv.style.color = '#fff';
+        alertDiv.style.padding = '32px 40px';
+        alertDiv.style.borderRadius = '16px';
+        alertDiv.style.boxShadow = '0 8px 32px rgba(0,0,0,0.45)';
+        alertDiv.style.textAlign = 'center';
+        alertDiv.style.fontSize = '1.5rem';
+        alertDiv.style.fontWeight = 'bold';
+        alertDiv.innerHTML = `<div style='margin-bottom:18px;'>${message}</div><button id='closeCustomGameAlert' style='margin-top:10px;padding:8px 24px;border:none;border-radius:6px;background:#00d1b2;color:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;'>OK</button>`;
+        // Place inside the game panel
+        const gamePanel = document.querySelector('.col-md-8 .card-body.position-relative');
+        if (gamePanel) {
+            gamePanel.appendChild(alertDiv);
+            document.getElementById('closeCustomGameAlert').onclick = function() {
+                alertDiv.remove();
+            };
+        }
+    }
+    
+    function endGame(win, message) {
+        gameRunning = false;
+        gameOver = true;
+        gameFinished = true;
+        cancelAnimationFrame(animationFrame);
+        if (timerInterval) clearInterval(timerInterval);
+        // Use custom alert for game over
+        if (win) {
+            showCustomAlert(message + (gameMode==='collect'?` You collected ${score} coins!` : ''));
+        } else {
+            showCustomAlert(message);
+        }
+    }
+    
+    function togglePause() {
+        if (!gameRunning) return;
+        
+        gamePaused = !gamePaused;
+        
+        if (gamePaused) {
+            document.getElementById('pauseGameButton').innerHTML = '<i class="fas fa-play"></i>';
+            cancelAnimationFrame(animationFrame);
+        } else {
+            document.getElementById('pauseGameButton').innerHTML = '<i class="fas fa-pause"></i>';
+            animationFrame = requestAnimationFrame(gameLoop);
+        }
+    }
+    
+    function stopGame() {
+        gameRunning = false;
+        gamePaused = false;
+        gameOver = false;
+        gameFinished = false;
+        cancelAnimationFrame(animationFrame);
+        if (timerInterval) clearInterval(timerInterval);
+        // Clear all game elements
+        coins = [];
+        enemies = [];
+        path = [];
+        score = 0;
+        timeLeft = 30;
+        // Reset grid to empty cells (no player, coins, exit, or enemies)
+        for (let y = 0; y < gridHeight; y++) {
+            for (let x = 0; x < gridWidth; x++) {
+                if (x === 0 || y === 0 || x === gridWidth-1 || y === gridHeight-1) {
+                    grid[y][x].type = CELL_WALL;
+                } else {
+                    grid[y][x].type = CELL_EMPTY;
+                }
+            }
+        }
+        drawGrid();
+        updateStats();
+    }
+    
+    function updateStats() {
+        document.getElementById('gameScore').textContent = score;
+        document.getElementById('gameTime').textContent = timeLeft;
+    }
+
+    // Dynamic instructions modal logic
+    function getGameInstructionsHTML() {
+        // Get current settings
+        const mode = document.getElementById('gameMode').value;
+        const diff = document.getElementById('gameDifficulty').value;
+        let modeName = '', diffName = '', time = 0, coins = 0, enemies = 0, enemySpeed = '';
+        if (diff === 'easy') { diffName = 'Easy'; time = 30; coins = 8; enemies = 2; enemySpeed = '1.5 seconds'; }
+        else if (diff === 'medium') { diffName = 'Medium'; time = 20; coins = 10; enemies = 3; enemySpeed = '1 second'; }
+        else { diffName = 'Hard'; time = 10; coins = 12; enemies = 5; enemySpeed = '0.3 seconds'; }
+        if (mode === 'collect') modeName = 'Collect Coins';
+        else if (mode === 'escape') modeName = 'Escape the Maze';
+        else modeName = 'Enemy Chase';
+        let html = `<h4 class='mb-3 text-primary'><i class='fas fa-gamepad me-2'></i>${modeName} (${diffName})</h4>`;
+        html += `<ul class='mb-3'>`;
+        html += `<li><strong>Grid Size:</strong> 20 x 20</li>`;
+        html += `<li><strong>Time Limit:</strong> ${time} seconds</li>`;
+        if (mode === 'collect') {
+            html += `<li><strong>Objective:</strong> Collect all coins as quickly as possible.</li>`;
+            html += `<li><strong>Coins to Collect:</strong> ${coins}</li>`;
+            html += `<li><strong>Enemies:</strong> None</li>`;
+            html += `<li><strong>Exit:</strong> Not present</li>`;
+        } else if (mode === 'escape') {
+            html += `<li><strong>Objective:</strong> Collect all coins, then reach the exit before time runs out.</li>`;
+            html += `<li><strong>Coins to Collect:</strong> ${coins}</li>`;
+            html += `<li><strong>Enemies:</strong> None</li>`;
+            html += `<li><strong>Exit:</strong> Appears after collecting all coins</li>`;
+        } else if (mode === 'chase') {
+            html += `<li><strong>Objective:</strong> Reach the exit while avoiding enemies that chase you using A* pathfinding.</li>`;
+            html += `<li><strong>Coins:</strong> None</li>`;
+            html += `<li><strong>Enemies:</strong> ${enemies} (move every ${enemySpeed})</li>`;
+            html += `<li><strong>Exit:</strong> Present from the start</li>`;
+        }
+        html += `<li><strong>Maze:</strong> Randomly generated, always solvable (DFS algorithm)</li>`;
+        html += `<li><strong>Controls:</strong> Arrow keys or WASD to move</li>`;
+        html += `<li><strong>Show A* Path:</strong> Toggle to visualize the shortest path</li>`;
+        html += `</ul>`;
+        return html;
+    }
+    // Show instructions modal with dynamic content
+    function showGameInstructionsModal() {
+        document.getElementById('gameInstructionsModalBody').innerHTML = getGameInstructionsHTML();
+        if (!window._gameInstructionsModalInstance) {
+            window._gameInstructionsModalInstance = new bootstrap.Modal(document.getElementById('gameInstructionsModal'));
+        }
+        window._gameInstructionsModalInstance.show();
+    }
+    document.getElementById('helpGameButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        showGameInstructionsModal();
+    });
+
+    // --- Game Over Modal ---
+    // Add a new modal for game over messages
+    if (!document.getElementById('gameOverModal')) {
+        const gameOverModalHtml = `
+        <div class="modal fade" id="gameOverModal" tabindex="-1" aria-labelledby="gameOverModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background:#23243a;color:#fff;">
+              <div class="modal-header" style="background:#23243a;color:#fff;">
+                <h5 class="modal-title" id="gameOverModalLabel"><i class="fas fa-flag-checkered me-2"></i>Game Over</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center" id="gameOverModalBody" style="font-size:1.3rem;"></div>
+              <div class="modal-footer" style="background:#23243a;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', gameOverModalHtml);
+    }
+    function showGameOverModal(message) {
+        document.getElementById('gameOverModalBody').innerHTML = message;
+        if (!window._gameOverModalInstance) {
+            window._gameOverModalInstance = new bootstrap.Modal(document.getElementById('gameOverModal'));
+        }
+        window._gameOverModalInstance.show();
+    }
+    // Fix Bootstrap modal backdrop bug for game over modal
+    document.getElementById('gameOverModal').addEventListener('hidden.bs.modal', function() {
+        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+    });
+
+    // Fix Bootstrap modal backdrop bug for help/instructions modal
+    document.getElementById('gameInstructionsModal').addEventListener('hidden.bs.modal', function() {
+        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+    });
+
+    // Style the modal for dark mode
+    const modal = document.getElementById('gameInstructionsModal');
+    if (modal) {
+        modal.classList.add('bg-dark');
+        modal.querySelector('.modal-content').style.background = '#23243a';
+        modal.querySelector('.modal-content').style.color = '#fff';
+        modal.querySelector('.modal-header').style.background = '#23243a';
+        modal.querySelector('.modal-header').style.color = '#fff';
+        modal.querySelector('.modal-footer').style.background = '#23243a';
+    }
+
+    // Event listeners for controls
+    document.getElementById('startGameButton').addEventListener('click', startGame);
+    document.getElementById('pauseGameButton').addEventListener('click', togglePause);
+    document.getElementById('stopGameButton').addEventListener('click', stopGame);
+    
+    document.getElementById('showPathSwitch').addEventListener('change', function() {
+        showPath = this.checked;
+        drawGrid();
+    });
+    
+    document.getElementById('gameDifficulty').addEventListener('change', function() {
+        difficulty = this.value;
+        if (!gameRunning) {
+            initGrid();
+            drawGrid();
+        }
+    });
+    
+    document.getElementById('gameMode').addEventListener('change', function() {
+        gameMode = this.value;
+        if (!gameRunning) {
+            initGrid();
+            drawGrid();
+        }
+    });
+    
+    // Keyboard controls
+    // Remove previous event listener if any, then add a new one
+    if (window._astarKeydownHandler) {
+        document.removeEventListener('keydown', window._astarKeydownHandler);
+    }
+    window._astarKeydownHandler = function(e) {
+        if (!gameRunning || gamePaused) return;
+        let key = e.key.toLowerCase();
+        if (key === 'arrowup' || key === 'w') movePlayer(0, -1);
+        if (key === 'arrowdown' || key === 's') movePlayer(0, 1);
+        if (key === 'arrowleft' || key === 'a') movePlayer(-1, 0);
+        if (key === 'arrowright' || key === 'd') movePlayer(1, 0);
+    };
+    document.addEventListener('keydown', window._astarKeydownHandler);
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (!gameRunning) drawGrid();
+    });
+
+    // Initialize the game
+    initGrid();
+    drawGrid();
+    updateStats();
+})();
+</script>

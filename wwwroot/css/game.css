@@ -1,0 +1,192 @@
+/* Dark Mode A* Algorithm Game Visualization with Smooth Animations */
+
+/* Canvas and grid styling */
+#gameCanvas {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background-color: #121218;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+#gameCanvas:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+:root {
+    --game-node-empty: #1e1e2d;
+    --game-node-wall: #121218;
+    --game-node-player: #00d1b2;
+    --game-node-coin: #ffdd57;
+    --game-node-enemy: #ff3860;
+    --game-node-path: #b86bff;
+    --game-node-grid-line: rgba(255, 255, 255, 0.05);
+    --game-node-visited: #48c774;
+    --game-node-considered: #ff7b4d;
+    --game-node-exit: #3298dc;
+}
+
+/* Legend styling */
+.game-color-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.game-legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+.game-legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin-right: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.game-legend-color:hover {
+    transform: scale(1.1);
+}
+
+/* Controls styling */
+#gameControls, .game-control-panel {
+    background: #1a1a24;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Button styles */
+.btn-game {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.btn-game:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-game:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-game-start {
+    background: linear-gradient(135deg, var(--game-node-player), #00b89c);
+}
+
+.btn-game-reset {
+    background: linear-gradient(135deg, var(--game-node-enemy), #ff1e4d);
+}
+
+.btn-game-clear {
+    background: linear-gradient(135deg, var(--game-node-coin), #ffd324);
+    color: #333;
+}
+
+/* Node animations */
+.game-node {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.game-node-wall {
+    transition: all 0.2s ease-out;
+}
+
+@keyframes gameNodeVisited {
+    0% {
+        transform: scale(0.6);
+        background-color: var(--game-node-considered);
+        border-radius: 30%;
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.05);
+        background-color: var(--game-node-visited);
+        opacity: 1;
+    }
+    75% {
+        transform: scale(0.95);
+        background-color: var(--game-node-path);
+    }
+    100% {
+        transform: scale(1);
+        background-color: var(--game-node-path);
+        opacity: 1;
+    }
+}
+
+@keyframes gameNodePath {
+    0% {
+        transform: scale(0.6);
+        opacity: 0;
+        border-radius: 50%;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+        border-radius: 20%;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        background-color: var(--game-node-path);
+        border-radius: 0;
+    }
+}
+
+.game-node-visited {
+    animation: gameNodeVisited 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.game-node-path {
+    animation: gameNodePath 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.game-node-open {
+    animation: gamePulse 1.5s infinite alternate;
+}
+
+@keyframes gamePulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.02);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .game-control-panel {
+        padding: 15px;
+    }
+    .btn-game {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    #gameCanvas {
+        height: 400px;
+    }
+}

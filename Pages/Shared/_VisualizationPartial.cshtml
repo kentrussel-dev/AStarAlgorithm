@@ -347,18 +347,24 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Initialize the grid
         function initGrid() {
-            // Calculate grid dimensions based on canvas size
-            const canvasWidth = canvas.parentElement.clientWidth;
-            const canvasHeight = 500; // Fixed height from your HTML
-            
-            cellSize = Math.min(Math.floor(canvasWidth / gridSize), Math.floor(canvasHeight / gridSize));
-            gridWidth = Math.floor(canvasWidth / cellSize);
-            gridHeight = Math.floor(canvasHeight / cellSize);
-            
-            // Resize canvas to fit grid exactly
-            canvas.width = gridWidth * cellSize;
-            canvas.height = gridHeight * cellSize;
-            
+            // Calculate the maximum square size that fits in the parent
+            const parent = canvas.parentElement;
+            const parentWidth = parent.clientWidth;
+            // Use window.innerWidth for mobile, fallback to 500px max
+            const maxCanvasSize = Math.min(parentWidth, 500);
+            // Always use a perfect square for the canvas
+            canvas.width = maxCanvasSize;
+            canvas.height = maxCanvasSize;
+
+            // Set grid size (always square)
+            gridWidth = gridSize;
+            gridHeight = gridSize;
+            // Each cell is a perfect square
+            cellSize = Math.floor(maxCanvasSize / gridSize);
+            // Adjust canvas to fit the grid exactly
+            canvas.width = cellSize * gridSize;
+            canvas.height = cellSize * gridSize;
+
             // Initialize grid cells
             grid = [];
             for (let y = 0; y < gridHeight; y++) {
@@ -377,13 +383,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     };
                 }
             }
-            
+
             // Reset start and end positions if they're out of bounds
             if (startNode.x >= gridWidth) startNode.x = gridWidth - 1;
             if (startNode.y >= gridHeight) startNode.y = gridHeight - 1;
             if (endNode.x >= gridWidth) endNode.x = gridWidth - 1;
             if (endNode.y >= gridHeight) endNode.y = gridHeight - 1;
-            
+
             drawGrid();
         }
         

@@ -432,7 +432,13 @@ C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\AStarAlgorithmDemo.pdb
 C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\AStarAlgorithmDemo.genruntimeconfig.cache
 C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\ref\AStarAlgorithmDemo.dll
 C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\compressed\4ikthm9vk4-3r8b2a0bt1.gz
-C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\compressed\gkv9xuoymd-whaooiwf8x.gz
 C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\compressed\n2ax2y247u-yo38qa9qgw.gz
 C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\compressed\1xh4j48lec-ifch775wam.gz
 C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\AStarAlgorithmDemo.sourcelink.json
+C:\NEU\SE2\Projects\AStarAlgorithmDemo\bin\Debug\net9.0\out\web.config
+C:\NEU\SE2\Projects\AStarAlgorithmDemo\bin\Debug\net9.0\out\appsettings.Development.json
+C:\NEU\SE2\Projects\AStarAlgorithmDemo\bin\Debug\net9.0\out\appsettings.json
+C:\NEU\SE2\Projects\AStarAlgorithmDemo\bin\Debug\net9.0\out\AStarAlgorithmDemo.deps.json
+C:\NEU\SE2\Projects\AStarAlgorithmDemo\bin\Debug\net9.0\out\AStarAlgorithmDemo.runtimeconfig.json
+C:\NEU\SE2\Projects\AStarAlgorithmDemo\bin\Debug\net9.0\out\AStarAlgorithmDemo.staticwebassets.endpoints.json
+C:\NEU\SE2\Projects\AStarAlgorithmDemo\obj\Debug\net9.0\compressed\gkv9xuoymd-a46syrqxft.gz

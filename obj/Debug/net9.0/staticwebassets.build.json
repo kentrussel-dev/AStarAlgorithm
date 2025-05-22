@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "m8mgjS5tTeI0hGVoZrTEg32ErfHP6oiZudL2TEU//Kc=",
+  "Hash": "CUGeo8rTsWkxu9SH5cHBLK46G3au4R1zmM9mMrI+1SE=",
   "Source": "AStarAlgorithmDemo",
   "BasePath": "_content/AStarAlgorithmDemo",
   "Mode": "Default",
@@ -752,12 +752,12 @@
       "OriginalItemSpec": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\gkv9xuoymd-whaooiwf8x.gz",
+      "Identity": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\gkv9xuoymd-a46syrqxft.gz",
       "SourceId": "AStarAlgorithmDemo",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/AStarAlgorithmDemo",
-      "RelativePath": "css/visualization#[.{fingerprint=whaooiwf8x}]?.css.gz",
+      "RelativePath": "css/visualization#[.{fingerprint=a46syrqxft}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -766,8 +766,8 @@
       "RelatedAsset": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\css\\visualization.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "n8hdr2ue8e",
-      "Integrity": "ecQRMwAjtMHuc7VKR4C9Bas8LTqckqAZb5+YGAdSOUc=",
+      "Fingerprint": "0ttfjcuted",
+      "Integrity": "pAdFm4fV975HkzcgzAejsOQmieowpxFFuBn/eZ8GLIs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\css\\visualization.css"
@@ -1501,8 +1501,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "whaooiwf8x",
-      "Integrity": "3FTEJeJGX0mKFx4aBVBkb/Mj0rN1+TcbDzPxLdR9Uv4=",
+      "Fingerprint": "a46syrqxft",
+      "Integrity": "BmR0HmWrv0yOklGGmtdvawrvnnnnnDs4G1SrMwHA1Jk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\visualization.css"
@@ -1527,6 +1527,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\coding.png",
+      "SourceId": "AStarAlgorithmDemo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\",
+      "BasePath": "_content/AStarAlgorithmDemo",
+      "RelativePath": "img/coding#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "q7mno390bt",
+      "Integrity": "ypsBi5VuogmVZ3wu8TSCyHTdNxw39rOQNO18qq8bqMU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\coding.png"
     },
     {
       "Identity": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\jorem.png",
@@ -1569,6 +1590,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\kent.png"
+    },
+    {
+      "Identity": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\logo.png",
+      "SourceId": "AStarAlgorithmDemo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\",
+      "BasePath": "_content/AStarAlgorithmDemo",
+      "RelativePath": "img/logo#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lnh22uil71",
+      "Integrity": "H2D2dLSShWD6HEpZx45xIXLds/R7Rk5+K08UXU1xiKM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\logo.png"
     },
     {
       "Identity": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\js\\site.js",
@@ -4046,13 +4088,13 @@
       ]
     },
     {
-      "Route": "css/visualization.css",
-      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\gkv9xuoymd-whaooiwf8x.gz",
+      "Route": "css/visualization.a46syrqxft.css",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\gkv9xuoymd-a46syrqxft.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000704721635"
+          "Quality": "0.000663570007"
         }
       ],
       "ResponseHeaders": [
@@ -4062,19 +4104,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1418"
+          "Value": "1506"
         },
         {
           "Name": "ETag",
-          "Value": "\"ecQRMwAjtMHuc7VKR4C9Bas8LTqckqAZb5+YGAdSOUc=\""
+          "Value": "\"pAdFm4fV975HkzcgzAejsOQmieowpxFFuBn/eZ8GLIs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 16:36:03 GMT"
+          "Value": "Thu, 22 May 2025 06:58:09 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -4090,18 +4132,26 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"3FTEJeJGX0mKFx4aBVBkb/Mj0rN1+TcbDzPxLdR9Uv4=\""
+          "Value": "W/\"BmR0HmWrv0yOklGGmtdvawrvnnnnnDs4G1SrMwHA1Jk=\""
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "a46syrqxft"
+        },
+        {
+          "Name": "label",
+          "Value": "css/visualization.css"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-3FTEJeJGX0mKFx4aBVBkb/Mj0rN1+TcbDzPxLdR9Uv4="
+          "Value": "sha256-BmR0HmWrv0yOklGGmtdvawrvnnnnnDs4G1SrMwHA1Jk="
         }
       ]
     },
     {
-      "Route": "css/visualization.css",
+      "Route": "css/visualization.a46syrqxft.css",
       "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\css\\visualization.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -4111,7 +4161,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5553"
+          "Value": "5881"
         },
         {
           "Name": "Content-Type",
@@ -4119,121 +4169,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3FTEJeJGX0mKFx4aBVBkb/Mj0rN1+TcbDzPxLdR9Uv4=\""
+          "Value": "\"BmR0HmWrv0yOklGGmtdvawrvnnnnnDs4G1SrMwHA1Jk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 16:36:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-3FTEJeJGX0mKFx4aBVBkb/Mj0rN1+TcbDzPxLdR9Uv4="
-        }
-      ]
-    },
-    {
-      "Route": "css/visualization.css.gz",
-      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\gkv9xuoymd-whaooiwf8x.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1418"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"ecQRMwAjtMHuc7VKR4C9Bas8LTqckqAZb5+YGAdSOUc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 16:36:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-ecQRMwAjtMHuc7VKR4C9Bas8LTqckqAZb5+YGAdSOUc="
-        }
-      ]
-    },
-    {
-      "Route": "css/visualization.whaooiwf8x.css",
-      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\gkv9xuoymd-whaooiwf8x.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000704721635"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1418"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"ecQRMwAjtMHuc7VKR4C9Bas8LTqckqAZb5+YGAdSOUc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 16:36:03 GMT"
+          "Value": "Thu, 22 May 2025 06:58:09 GMT"
         },
         {
           "Name": "Cache-Control",
           "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"3FTEJeJGX0mKFx4aBVBkb/Mj0rN1+TcbDzPxLdR9Uv4=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "whaooiwf8x"
+          "Value": "a46syrqxft"
         },
         {
           "Name": "label",
@@ -4241,13 +4191,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-3FTEJeJGX0mKFx4aBVBkb/Mj0rN1+TcbDzPxLdR9Uv4="
+          "Value": "sha256-BmR0HmWrv0yOklGGmtdvawrvnnnnnDs4G1SrMwHA1Jk="
         }
       ]
     },
     {
-      "Route": "css/visualization.whaooiwf8x.css",
-      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\css\\visualization.css",
+      "Route": "css/visualization.a46syrqxft.css.gz",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\gkv9xuoymd-a46syrqxft.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4256,7 +4206,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5553"
+          "Value": "1506"
         },
         {
           "Name": "Content-Type",
@@ -4264,56 +4214,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3FTEJeJGX0mKFx4aBVBkb/Mj0rN1+TcbDzPxLdR9Uv4=\""
+          "Value": "\"pAdFm4fV975HkzcgzAejsOQmieowpxFFuBn/eZ8GLIs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 16:36:03 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "whaooiwf8x"
-        },
-        {
-          "Name": "label",
-          "Value": "css/visualization.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-3FTEJeJGX0mKFx4aBVBkb/Mj0rN1+TcbDzPxLdR9Uv4="
-        }
-      ]
-    },
-    {
-      "Route": "css/visualization.whaooiwf8x.css.gz",
-      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\gkv9xuoymd-whaooiwf8x.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1418"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"ecQRMwAjtMHuc7VKR4C9Bas8LTqckqAZb5+YGAdSOUc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 16:36:03 GMT"
+          "Value": "Thu, 22 May 2025 06:58:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4331,7 +4236,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "whaooiwf8x"
+          "Value": "a46syrqxft"
         },
         {
           "Name": "label",
@@ -4339,7 +4244,144 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ecQRMwAjtMHuc7VKR4C9Bas8LTqckqAZb5+YGAdSOUc="
+          "Value": "sha256-pAdFm4fV975HkzcgzAejsOQmieowpxFFuBn/eZ8GLIs="
+        }
+      ]
+    },
+    {
+      "Route": "css/visualization.css",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\gkv9xuoymd-a46syrqxft.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000663570007"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1506"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pAdFm4fV975HkzcgzAejsOQmieowpxFFuBn/eZ8GLIs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 22 May 2025 06:58:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"BmR0HmWrv0yOklGGmtdvawrvnnnnnDs4G1SrMwHA1Jk=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BmR0HmWrv0yOklGGmtdvawrvnnnnnDs4G1SrMwHA1Jk="
+        }
+      ]
+    },
+    {
+      "Route": "css/visualization.css",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\css\\visualization.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5881"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BmR0HmWrv0yOklGGmtdvawrvnnnnnDs4G1SrMwHA1Jk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 22 May 2025 06:58:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BmR0HmWrv0yOklGGmtdvawrvnnnnnDs4G1SrMwHA1Jk="
+        }
+      ]
+    },
+    {
+      "Route": "css/visualization.css.gz",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\obj\\Debug\\net9.0\\compressed\\gkv9xuoymd-a46syrqxft.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1506"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pAdFm4fV975HkzcgzAejsOQmieowpxFFuBn/eZ8GLIs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 22 May 2025 06:58:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pAdFm4fV975HkzcgzAejsOQmieowpxFFuBn/eZ8GLIs="
         }
       ]
     },
@@ -4642,6 +4684,88 @@
       ]
     },
     {
+      "Route": "img/coding.png",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\coding.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24285"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ypsBi5VuogmVZ3wu8TSCyHTdNxw39rOQNO18qq8bqMU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 21:59:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ypsBi5VuogmVZ3wu8TSCyHTdNxw39rOQNO18qq8bqMU="
+        }
+      ]
+    },
+    {
+      "Route": "img/coding.q7mno390bt.png",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\coding.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24285"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ypsBi5VuogmVZ3wu8TSCyHTdNxw39rOQNO18qq8bqMU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 21:59:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "q7mno390bt"
+        },
+        {
+          "Name": "label",
+          "Value": "img/coding.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ypsBi5VuogmVZ3wu8TSCyHTdNxw39rOQNO18qq8bqMU="
+        }
+      ]
+    },
+    {
       "Route": "img/jorem.0nqrmuo16u.png",
       "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\jorem.png",
       "Selectors": [],
@@ -4802,6 +4926,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-ojBfREVHfLbuZkZsjYcyUcey30WrvVzPR0U3xXGV1E4="
+        }
+      ]
+    },
+    {
+      "Route": "img/logo.lnh22uil71.png",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "160572"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"H2D2dLSShWD6HEpZx45xIXLds/R7Rk5+K08UXU1xiKM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 21:46:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lnh22uil71"
+        },
+        {
+          "Name": "label",
+          "Value": "img/logo.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-H2D2dLSShWD6HEpZx45xIXLds/R7Rk5+K08UXU1xiKM="
+        }
+      ]
+    },
+    {
+      "Route": "img/logo.png",
+      "AssetFile": "C:\\NEU\\SE2\\Projects\\AStarAlgorithmDemo\\wwwroot\\img\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "160572"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"H2D2dLSShWD6HEpZx45xIXLds/R7Rk5+K08UXU1xiKM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 21 May 2025 21:46:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-H2D2dLSShWD6HEpZx45xIXLds/R7Rk5+K08UXU1xiKM="
         }
       ]
     },

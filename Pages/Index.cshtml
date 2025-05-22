@@ -12,7 +12,8 @@
 
     <div class="card shadow-sm border-0 mb-5">
         <div class="card-body p-0">
-            <ul class="nav nav-tabs" id="algorithmTabs" role="tablist">
+            <!-- Desktop Tabs -->
+            <ul class="nav nav-tabs d-none d-md-flex" id="algorithmTabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="visualization-tab" data-bs-toggle="tab" data-bs-target="#visualization" 
                             type="button" role="tab" aria-controls="visualization" aria-selected="true">
@@ -38,7 +39,15 @@
                     </button>
                 </li>
             </ul>
-            
+            <!-- Mobile Dropdown Tabs -->
+            <div class="d-md-none mb-3">
+                <select class="form-select" id="mobileTabSelect" aria-label="Select Tab">
+                    <option value="visualization" selected>Visualization</option>
+                    <option value="interactive">Interactive Game</option>
+                    <option value="community">Community Examples</option>
+                    <option value="aboutus">About Us</option>
+                </select>
+            </div>
             <div class="tab-content p-4" id="algorithmTabsContent">
                 <!-- Visualization Tab -->
                 <div class="tab-pane fade show active" id="visualization" role="tabpanel" aria-labelledby="visualization-tab">
@@ -123,6 +132,20 @@
                 $.getScript('/js/visualization.js', function() {
                     window.visualizationScriptLoaded = true;
                 });
+            }
+            
+            // Mobile tab dropdown logic
+            $('#mobileTabSelect').on('change', function() {
+                var tab = $(this).val();
+                // Hide all tab panes
+                $('#algorithmTabsContent .tab-pane').removeClass('show active');
+                // Show the selected tab pane
+                $('#algorithmTabsContent #' + tab).addClass('show active');
+            });
+            // On page load, ensure correct tab is shown for mobile
+            if (window.innerWidth <= 768) {
+                $('#algorithmTabsContent .tab-pane').removeClass('show active');
+                $('#algorithmTabsContent #visualization').addClass('show active');
             }
         });
     </script>

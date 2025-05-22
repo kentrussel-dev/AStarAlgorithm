@@ -23,6 +23,6 @@ app.MapRazorPages().WithStaticAssets();
 
 // Required for Render
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://0.0.0.0:{port}");
+app.Urls.Add($"http://localhost:{port}");
 
 app.Run();

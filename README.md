@@ -2,6 +2,9 @@
 
 A comprehensive demonstration and interactive visualization of the A* (A-star) pathfinding algorithm, built with ASP.NET Core Razor Pages.
 
+## 🚀 Live Demo
+**Try it now:** [https://astaralgorithm.onrender.com](https://astaralgorithm.onrender.com)
+
 ## Features
 - Interactive A* visualization and game
 - Community and real-world examples
@@ -13,8 +16,7 @@ A comprehensive demonstration and interactive visualization of the A* (A-star) p
 ## Getting Started
 
 ### 1. Clone the Repository
-
-```
+```bash
 git clone https://github.com/kentrussel-dev/AStarAlgorithm.git
 cd AStarAlgorithm
 ```
@@ -29,7 +31,7 @@ cd AStarAlgorithm
 #### Using .NET CLI:
 1. Open a terminal in the project directory.
 2. Run:
-   ```
+   ```bash
    dotnet run --project AStarAlgorithmDemo.csproj
    ```
 3. Open your browser and go to `https://localhost:5001` or the URL shown in the terminal.
